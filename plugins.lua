@@ -172,31 +172,15 @@ local plugins = {
     },
   },
   {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("notify").setup {
-        background_colour = "#000000",
-      }
-    end,
-  },
-  {
     "folke/noice.nvim",
     lazy = false,
     opts = {},
     config = function()
       require("noice").setup {
         lsp = {
+          enabled = false,
           signature = { enabled = false },
           hover = { enabled = false },
-        },
-        routes = {
-          {
-            filter = {
-              event = "notify",
-              find = "No information",
-            },
-            opts = { skip = true },
-          },
         },
       }
     end,
@@ -302,6 +286,18 @@ local plugins = {
         line_number_text = "Line %s out of %s", -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
       }
     end,
+  },
+  {
+    "benfowler/telescope-luasnip.nvim",
+    keys = {
+      { "<leader>fs", "<cmd>Telescope luasnip<Return>", desc = "Telescope Snips" },
+    },
+  },
+  {
+    "DanielVolchek/tailiscope.nvim",
+    keys = {
+      { "<leader>tw", "<cmd>Telescope tailiscope<Return>", desc = "Telescope tailwindcss" },
+    },
   },
 }
 

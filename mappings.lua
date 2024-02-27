@@ -38,12 +38,20 @@ M.general = {
       end,
       "File Browser",
     },
-    ["<leader>a"] = { "<cmd>lua require('telescope').extensions.vim_bookmarks.all()<cr>" },
+    ["<leader>ff"] = {
+
+      function()
+        require("telescope.builtin").find_files {
+          file_ignore_patterns = { "node_modules", "yarn.lock", "debug" },
+        }
+      end,
+      desc = "Find Files",
+    },
+    ["<leader>a"] = { "<cmd>lua require('telescope').extensions.vim_bookmarks.all()<cr>", "Search bookmarks" },
     ["<leader>ta"] = { "<cmd>lua require('alternate-toggler').toggleAlternate()<CR>" },
     ["<leader>gl"] = { "<cmd>LazyGit<CR>" },
     ["ss"] = { "<cmd>split<cr>" },
     ["sv"] = { "<cmd>vsplit<cr>" },
-    ["<leader>sa"] = { ":ysiw" },
     ["<leader>cq"] = {
       function()
         require("nvchad.tabufline").close_buffer()
