@@ -10,6 +10,7 @@ M.treesitter = {
     "typescript",
     "tsx",
     "rust",
+    "dockerfile",
   },
   indent = {
     enable = true,
@@ -34,9 +35,12 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "tailwindcss-language-server",
+    "dockerfile-language-server",
+    "docker-compose-language-service",
     "deno",
     "prettier",
     "eslint_d",
+    "yaml-language-server",
   },
 }
 
@@ -44,8 +48,11 @@ M.mason = {
 M.nvimtree = {
   git = {
     enable = true,
+    ignore = false,
   },
-
+  filters = {
+    custom = { "node_modules" },
+  },
   renderer = {
     highlight_git = true,
     icons = {

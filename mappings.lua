@@ -43,6 +43,7 @@ M.general = {
       function()
         require("telescope.builtin").find_files {
           file_ignore_patterns = { "node_modules", "yarn.lock", "debug" },
+          respect_gitignore = false,
         }
       end,
       desc = "Find Files",
