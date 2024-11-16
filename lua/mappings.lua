@@ -3,7 +3,6 @@ local cmp = require "cmp"
 
 local nomap = vim.keymap.del
 
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -35,13 +34,16 @@ map("n", "<leader>tt", function()
   require("base46").toggle_transparency()
 end, { desc = "Toggle transparency" })
 
-
 map({ "n", "t" }, "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "terminal toggleable horizontal term" })
 
 map({ "n", "t" }, "<leader>v", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "terminal toggle floating term" })
+
+map("n", "<leader>e", function()
+  require("neo-tree.command").execute { toggle = true }
 end, { desc = "terminal toggle floating term" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

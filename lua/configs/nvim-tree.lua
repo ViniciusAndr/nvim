@@ -1,22 +1,41 @@
-require("nvim-tree").setup {
-  git = {
-    enable = true,
-    ignore = false,
+require("neo-tree").setup {
+  close_if_last_window = true,
+  sources = { "filesystem", "buffers", "git_status" },
+  open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
+  filesystem = {
+    bind_to_cwd = false,
+    follow_current_file = { enabled = true },
+    use_libuv_file_watcher = true,
   },
-  filters = {
-    custom = { "node_modules" },
-  },
-  renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
+  default_component_configs = {
+    indent = {
+      with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+      expander_collapsed = "",
+      expander_expanded = "",
+      expander_highlight = "NeoTreeExpander",
+    },
+    git_status = {
+      symbols = {
+        -- Change type
+        added = "",
+        modified = "",
+        deleted = "✖",
+        renamed = "󰁕",
+        -- Status type
+        untracked = "",
+        ignored = "",
+        unstaged = "󰄱",
+        staged = "",
+        conflict = "",
       },
     },
   },
-  actions = {
-    open_file = {
-      quit_on_open = true,
+  event_handlers = {
+    {
+      event = "file_open_requested",
+      handler = function()
+        require("neo-tree.command").execute { action = "close" }
+      end,
     },
   },
 }
